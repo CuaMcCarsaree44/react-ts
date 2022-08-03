@@ -17,12 +17,15 @@ export class Log {
     const date = (dateObj.getDate() < 10 ? `0${dateObj.getDate()}` : dateObj.getDate());
     const month = (dateObj.getMonth() + 1 < 10 ? `0${dateObj.getMonth() + 1}` : dateObj.getMonth() + 1);
 
-    return `${process.env.APP_NAME}-${dateObj.getFullYear()}-${month}-${date}`;
+    return `${process.env.REACT_APP_NAME}-${dateObj.getFullYear()}-${month}-${date}`;
   }
 
   /**
    * writeLog
    *  A function to write log message to file.
+   *
+   * @since 20220802 writeLog will not send the error through FS since React JS is working on browser
+   * @todo Make your own Crashlytics system
    *
    * @return void
    */
@@ -30,6 +33,8 @@ export class Log {
 
     const currentFileName: string = `./logs/${Log.getDate()}.log`;
     const logFormat: string = `${str} ${object}\n`;
+
+    return;
 
     fs.appendFile(currentFileName, logFormat, (appendError: any) => {
       if(appendError) {
