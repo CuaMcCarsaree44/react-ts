@@ -1,7 +1,5 @@
 import {CatGetFactResponse} from "../model/response/CatGetFactResponse";
 import axios from "axios";
-import {Log} from "../config/Logging";
-
 
 export class CatFactServices {
 
@@ -19,8 +17,6 @@ export class CatFactServices {
         "length": e.data.length
       }
     }).catch((error: any) => {
-      Log.e("Cat Fact Services - Get New Fact", error.message, error);
-
       return {
         "fact": "",
         "length": 0
