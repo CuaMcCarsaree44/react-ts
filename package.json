@@ -15,20 +15,29 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
     "colors": "^1.4.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
+    "sass": "^1.54.8",
+    "serve": "^14.0.1",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "development": "react-scripts start & sass --watch src/res/stylesheets/scss/main.scss src/res/stylesheets/dist/main.css",
+    "start": "cross-env PORT=58988 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "serve -s build -l 58988",
+    "deploy": "yarn sass:build:prod; react-scripts build; serve -s build -l 58988",
+    "sass:build:dev": "sass --watch src/res/stylesheets/scss/main.scss src/res/stylesheets/dist/main.css",
+    "sass:build:prod": "sass src/res/stylesheets/scss/main.scss src/res/stylesheets/dist/main.css"
   },
   "eslintConfig": {
     "extends": [
